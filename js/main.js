@@ -1,15 +1,24 @@
 'use strict';
 
-const input = document.getElementById("audioFileInput");
-const playButton = document.getElementById("playButton");
-let audioUrl;
+const playChrome = document.getElementById("playChrome");
+const playEdge = document.getElementById("playEdge");
+const playSafari = document.getElementById("playSafari");
 
-input.addEventListener("change", function() {
-    const file = input.files[0];
-    audioUrl = URL.createObjectURL(file);
-});
+const paragraph = document.querySelector('p');
 
-playButton.addEventListener("click", function() {
+function myPlayAudio(audioUrl) {
+    paragraph.textContent = "Playing " + audioUrl + " ...";
     const audio = new Audio(audioUrl);
     audio.play();
+}
+playChrome.addEventListener("click", function () {
+    myPlayAudio("wav/" + playChrome.textContent + ".wav")
+});
+
+playEdge.addEventListener("click", function () {
+    myPlayAudio("wav/" + playEdge.textContent + ".wav")
+});
+
+playSafari.addEventListener("click", function () {
+    myPlayAudio("wav/" + playSafari.textContent + ".wav")
 });
